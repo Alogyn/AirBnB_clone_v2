@@ -16,7 +16,6 @@ from models.state import State
 from models.city import City
 
 
-
 def split_curly_braces(e_arg):
     """
     Splits the curly braces for the update method
