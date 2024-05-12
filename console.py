@@ -94,10 +94,8 @@ class HBNBCommand(cmd.Cmd):
             kwargs = {}
             commands = arg.split(" ")
             for i in range(1, len(commands)):
-                
                 key = commands[i].split("=")[0]
                 value = commands[i].split("=")[1]
-                #key, value = tuple(commands[i].split("="))
                 if value.startswith('"'):
                     value = value.strip('"').replace("_", " ")
                 else:
@@ -181,7 +179,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in objects.items():
                 if key.split('.')[0] == commands[0]:
                     print(str(value))
-        
+
     def do_count(self, arg):
         """
         Counts and retrieves the number of instances of a class
