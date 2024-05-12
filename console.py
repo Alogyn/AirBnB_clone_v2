@@ -268,7 +268,7 @@ class HBNBCommand(cmd.Cmd):
                     setattr(obj, attr_name, attr_value)
 
                 obj.save()
-    
+
     def default(self, arg):
         """
         Default behavior for cmd module when input is invalid
@@ -310,7 +310,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("*** Unknown syntax: {}".format(arg))
             return False
-    
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
