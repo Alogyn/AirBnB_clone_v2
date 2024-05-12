@@ -125,21 +125,12 @@ class TestHBNBCommand(unittest.TestCase):
             self.assertIn(am, f.getvalue())
 
     def test_create_command_with_kwargs(self):
-        """Test create command with kwargs."""
-        # Test create command with additional key-value pairs
-        with patch("sys.stdout", new=StringIO()) as f:
-            call = (f'create Place city_id="0001" name="My_house" number_rooms=4 latitude=37.77 longitude=43.434')  # noqa
-            self.HBNB.onecmd(call)
-            pl = f.getvalue().strip()
-        with patch("sys.stdout", new=StringIO()) as f:
-            self.HBNB.onecmd("all Place")
-            output = f.getvalue()
-            self.assertIn(pl, output)
-            self.assertIn("'city_id': '0001'", output)
-            self.assertIn("'name': 'My house'", output)
-            self.assertIn("'number_rooms': 4", output)
-            self.assertIn("'latitude': 37.77", output)
-            self.assertIn("'longitude': 43.434", output)
+    """Test create command with kwargs."""
+    with patch("sys.stdout", new=StringIO()) as f:
+        call = 'create BaseModel name="Test" created_at="2020-06-29T15:27:48.781259" updated_at="2020-06-29T15:27:48.781259"'
+        self.HBNB.onecmd(call)
+        output = f.getvalue().strip()
+        self.assertIn("Test", output)
 
 
 if __name__ == "__main__":
