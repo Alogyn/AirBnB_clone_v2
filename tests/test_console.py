@@ -108,6 +108,7 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "** no instance found **\n", f.getvalue())
 
+<<<<<<< HEAD
     def test_destroy(self):
         """Test destroy command inpout"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -231,6 +232,74 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("User.update(" + my_id + ", name)")
             self.assertEqual(
                 "** value missing **\n", f.getvalue())
+=======
+    def test_create_command_validity(self):
+        """Test create command."""
+        # Create BaseModel instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create BaseModel")
+            bm = f.getvalue().strip()
+
+        # Create User instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create User")
+            us = f.getvalue().strip()
+
+        # Create State instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create State")
+            st = f.getvalue().strip()
+
+        # Create Place instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create Place")
+            pl = f.getvalue().strip()
+
+        # Create City instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create City")
+            ct = f.getvalue().strip()
+
+        # Create Review instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create Review")
+            rv = f.getvalue().strip()
+
+        # Create Amenity instance and capture its ID
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("create Amenity")
+            am = f.getvalue().strip()
+        # Test if the created instances are in the output of "all" command
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all BaseModel")
+            self.assertIn(bm, f.getvalue())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all User")
+            self.assertIn(us, f.getvalue())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all State")
+            self.assertIn(st, f.getvalue())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all Place")
+            self.assertIn(pl, f.getvalue())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all City")
+            self.assertIn(ct, f.getvalue())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all Review")
+            self.assertIn(rv, f.getvalue())
+        with patch("sys.stdout", new=StringIO()) as f:
+            self.HBNB.onecmd("all Amenity")
+            self.assertIn(am, f.getvalue())
+
+    def test_create_command_with_kwargs(self):
+    """Test create command with kwargs."""
+    with patch("sys.stdout", new=StringIO()) as f:
+        call = 'create BaseModel name="Test" created_at="2020-06-29T15:27:48.781259" updated_at="2020-06-29T15:27:48.781259"'
+        self.HBNB.onecmd(call)
+        output = f.getvalue().strip()
+        self.assertIn("Test", output)
+>>>>>>> 4faeef60ead78c98dc0180fa89835461ad461e19
 
 
 if __name__ == "__main__":
